@@ -1,6 +1,7 @@
 import express, {NextFunction, Request, Response} from 'express'
 import { request } from 'http';
 import { start } from 'repl';
+import routes from './routes/routes';
 
 const app =  express();
 
@@ -18,15 +19,15 @@ const middleware = ({name}: {name: string})=>
 // register
 app.use(express.json())
 app.use(middleware({name: " Nico"}))
+routes(app);
 
 
+// app.get("/books/:bookId/:authorId", 
+// (req: Request, res: Response, next: NextFunction) => {
 
-app.get("/books/:bookId/:authorId", 
-(req: Request, res: Response, next: NextFunction) => {
-
-    console.log(resName);
-    res.send(resName)
-})
+//     console.log(resName);
+//     res.send(resName)
+// })
 
 app.listen(PORT, ()=> {
     console.log("Server runs on http://localhost:" + PORT);
